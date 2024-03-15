@@ -78,5 +78,3 @@ export const Levels = [
 // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-level.js
-Affichage de level.js
