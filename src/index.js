@@ -11,7 +11,14 @@ const keys = {
     40: 'down'
 }
 const draw = () => {
-    let currentMap = Levels[0]
+    let currentLevel = 0;
+    let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
     generateMap(currentMap);
+
+    window.requestAnimationFrame(gameLoop);
+    function gameLoop(){
+        generateMap(currentMap);
+        window.requestAnimationFrame(gameLoop);
+    }
 }
 draw();
