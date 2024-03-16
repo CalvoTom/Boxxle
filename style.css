@@ -1,16 +1,27 @@
 body {
+    /* style background */
     background: rgb(176, 149, 30);
 }
 
-#gameboard{
-    width: auto;
+#map {
+    /* Center the map */
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* style the map */
     display: grid;
-    grid-template-columns: repeat(10, 4vw);
-    grid-template-rows: repeat(10, 4vw);
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+    gap: 1px;
+    width: 500px;
+    height: 500px;
 }
 
-#gameboard>div{
-    position: absolute;
-    height: 4vw;
+.cell {
+    /* style cell of the map */
+    width: 50px;
+    height: 50px;
+    background-size: cover;
 }

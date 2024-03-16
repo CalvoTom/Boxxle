@@ -1,6 +1,5 @@
-/**
- * You can modify these constants as you want or get rid of it, your choice
- * */
+import {generateMap} from "./mapGeneration.js";
+import {Levels} from "./level.js ";
 
 const GRID_WIDTH = 50;
 const GRID_HEIGHT = 25;
@@ -11,9 +10,8 @@ const keys = {
     38: 'up',
     40: 'down'
 }
-
 const draw = () => {
-    //clear grid
-    //draw grid
-    // recursion with request animation frame
+    let currentMap = Levels[0]
+    generateMap(currentMap);
 }
+draw();
