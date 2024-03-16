@@ -13,6 +13,23 @@ const keys = {
     40: 'down'
 }
 
+const rulesButton = document.getElementById("rules-button");
+const rulesModal = document.getElementById("rules-modal");
+
+rulesButton.addEventListener("click", () => {
+    rulesModal.style.display = "block";
+});
+
+const closeButton = document.querySelector(".close");
+closeButton.addEventListener("click", () => {
+    rulesModal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {if (event.target === rulesModal) {
+    rulesModal.style.display = "none";
+}
+});
+
 const draw = (level = 0) => {
     //Charge map level
     let currentLevel = level;
