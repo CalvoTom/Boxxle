@@ -1,4 +1,4 @@
-function searchCollision(map, playerPositionX, playerPositionY) {
+export function searchCollision(map, playerPositionX, playerPositionY) {
     //check different type of collision
     if (map[[playerPositionX][playerPositionY]] === 0 || map[[playerPositionX][playerPositionY]] === 4){
         return 0;//no collision
