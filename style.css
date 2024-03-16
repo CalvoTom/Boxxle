@@ -1,6 +1,6 @@
 body {
     /* style background */
-    background: rgb(176, 149, 30);
+    background: darkslategray;
 }
 
 #map {
@@ -27,36 +27,60 @@ body {
 }
 
 .button {
-    display: inline-block;
-    position: absolute;
-    right: 30px;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
+    position: relative;
+    bottom: auto;
     text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background-color: lightgray;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: gray;
+    border-radius: 7px;
+    box-shadow: 0 .2em gray;
+    cursor: pointer;
+    font-size: 15pt;
+}
+
+.button-17 {
+    font-family: 'ArcadeClassic', sans-serif;
+    text-shadow: 1px 1px pink, -1px -1px maroon;
+    line-height: 1.5em;
+    text-align: center;
+    display: inline-block;
+    width: 1.5em;
+    border-radius: .75em;
     background-color: red;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    background-image: -o-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    background-image: -moz-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    background-image: -webkit-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    background-image: linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    box-shadow:  0 .2em maroon;
+    color: white;
+    margin: 5px;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.button-17:active, .start-btn:active {
+    box-shadow: none;
+    position: relative;
+    top: .2em;
 }
 
 .button-container {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
 }
 
+.button-17:active, .button:hover {background-color: gray}
 
-.button:hover {background-color: darkred}
-
-.button:active {
-    background-color: darkred;
+.button-17:active, .button:active {
+    background-color: gray;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -117,20 +141,5 @@ p{
 }
 
 /* CSS */
-.button-17 {
-    align-items: center;
-    border-radius: 24px;
-    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
-    color: #3c4043;
-    cursor: pointer;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-size: 7px;
-    height: 30px;
-    justify-content: center;
-    padding: 2px 15px;
-    position: relative;
-    text-align: center;
-    color: white;
-}
 
 
