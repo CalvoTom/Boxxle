@@ -16,6 +16,7 @@ const draw = (level = 0) => {
     //Charge map level
     let currentLevel = level;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
+    console.log(currentMap);
     generateMap(currentMap);
 
     //Check for arrow keys input
@@ -39,9 +40,10 @@ const draw = (level = 0) => {
                     generateMap(currentMap);
                     break;
             }
-        }
-        if (checkBox(currentMap, currentLevel)){
-            draw(currentLevel+1);
+            if (checkBox(currentMap, currentLevel)){
+                currentLevel += 1;
+                draw(currentLevel);
+            }
         }
     })
 }

@@ -1,7 +1,7 @@
 const images = {
     //Image path for each Level array value
     '0': 'null',
-    '1': './img/Wall.jpg',
+    '1': './img/wall.jpg',
     '2': './img/box.jpg',
     '3': './img/player_standing.png',
     '4': './img/floor_point.png',
