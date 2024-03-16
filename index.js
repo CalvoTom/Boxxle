@@ -1,6 +1,7 @@
-import {generateMap} from "./mapGeneration.js";
-import {Levels} from "./level.js ";
-import {moove} from "./moove.js"
+import {generateMap} from "./src/mapGeneration.js";
+import {Levels} from "./src/level.js";
+import {moove} from "./src/moove.js"
+import {checkBox} from "./src/checkBox.js";
 
 const GRID_WIDTH = 50;
 const GRID_HEIGHT = 25;
@@ -11,33 +12,37 @@ const keys = {
     38: 'up',
     40: 'down'
 }
-const draw = () => {
-    let currentLevel = 0;
+const draw = (level = 0) => {
+    //Charge map level
+    let currentLevel = level;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
+    console.log(currentMap);
     generateMap(currentMap);
+
+    //Check for arrow keys input
     document.addEventListener("keydown", event => {
         if(event.key.startsWith("Arrow")){
             switch (event.key){
                 case "ArrowUp" :
-                    console.log("up")
                     currentMap = moove("up", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
                 case "ArrowDown" :
-                    console.log("down")
                     currentMap = moove("down", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
                 case "ArrowLeft" :
-                    console.log("left")
                     currentMap = moove("left", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
                 case "ArrowRight" :
-                    console.log("right")
                     currentMap = moove("right", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
+            }
+            if (checkBox(currentMap, currentLevel)){
+                currentLevel += 1;
+                draw(currentLevel);
             }
         }
     })
