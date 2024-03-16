@@ -30,18 +30,27 @@ window.addEventListener("click", (event) => {if (event.target === rulesModal) {
 }
 });
 
+function updateProgressBar(currentLevel, maxLevel) {
+    const levelText = `${currentLevel} / ${maxLevel}`;
+    const levelWidth = (currentLevel / maxLevel) * 100;
+    const levelElement = document.querySelector('.level');
+    const levelTextElement = document.querySelector('.level-text');
+
+    levelElement.style.width = `${levelWidth}%`;
+    levelTextElement.textContent = levelText;
+}
+
 const draw = (level = 0) => {
     //Charge map level
     let currentLevel = level;
+    const maxLevel = Levels.length;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
-    console.log(currentMap);
     generateMap(currentMap);
+    updateProgressBar(currentLevel, maxLevel);
 
     const button = document.querySelector("button");
-
     button.addEventListener("click", (event) => {
         draw(currentLevel);
-        console.log("le button marche")
     });
 
     //Check for arrow keys input

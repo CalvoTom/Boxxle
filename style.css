@@ -41,7 +41,6 @@ body {
     cursor: pointer;
     font-size: 15pt;
 }
-
 .button-17 {
     font-family: 'ArcadeClassic', sans-serif;
     text-shadow: 1px 1px pink, -1px -1px maroon;
@@ -60,6 +59,9 @@ body {
     margin: 5px;
     cursor: pointer;
     padding-left: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .button-17:active, .start-btn:active {
@@ -130,16 +132,40 @@ body {
     cursor: pointer;
 }
 
-h2 {
-    font-family: "Raleway", sans-serif;
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.progress-bar {
+    background-color: #ddd;
+    height: 20px;
+    width: 500px;
+    position: relative;
+    border-radius: 20px;
+}
+
+.level {
+    background-color: #4caf50;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+}
+
+.level-text {
+    font-family: 'ArcadeClassic', sans-serif;
     color: #080808;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
 }
-
-p{
-    font-family: "Raleway", sans-serif;
-    color: dimgrey;
-}
-
-/* CSS */
 
 
