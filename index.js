@@ -12,12 +12,20 @@ const keys = {
     38: 'up',
     40: 'down'
 }
+
 const draw = (level = 0) => {
     //Charge map level
     let currentLevel = level;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
     console.log(currentMap);
     generateMap(currentMap);
+
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", (event) => {
+        draw(currentLevel);
+        console.log("le button marche")
+    });
 
     //Check for arrow keys input
     document.addEventListener("keydown", event => {
