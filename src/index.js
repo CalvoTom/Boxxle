@@ -20,22 +20,22 @@ const draw = () => {
             switch (event.key){
                 case "ArrowUp" :
                     console.log("up")
-                    currentMap = moove("up", currentMap);
+                    currentMap = moove("up", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
                 case "ArrowDown" :
                     console.log("down")
-                    currentMap = moove("down", currentMap);
+                    currentMap = moove("down", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
                 case "ArrowLeft" :
                     console.log("left")
-                    currentMap = moove("left", currentMap);
+                    currentMap = moove("left", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
                 case "ArrowRight" :
                     console.log("right")
-                    currentMap = moove("right", currentMap);
+                    currentMap = moove("right", currentMap, currentLevel);
                     generateMap(currentMap);
                     break;
             }
