@@ -10,8 +10,8 @@ const keys = {
     38: 'up',
     40: 'down'
 }
-
 const draw = () => {
-    generateMap(Levels[0]);
+    let currentMap = Levels[0]
+    generateMap(currentMap);
 }
 draw();
