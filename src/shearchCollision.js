@@ -6,5 +6,7 @@ function searchCollision(map, playerPositionX, playerPositionY) {
         return 1;//wall collision
     } else if (map[[playerPositionX][playerPositionY]] === 2){
         return 2;//box collision
+    }else if (map[[playerPositionX][playerPositionY]] === 3){
+        return 3;//floor with point collision
     }
 }
