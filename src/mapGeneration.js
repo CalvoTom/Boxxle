@@ -1,5 +1,6 @@
 const images = {
-    '0': './img/box.jpg',
+    //Image path for each Level array value
+    '0': 'null',
     '1': './img/Wall.jpg',
     '2': './img/box.jpg',
     '3': './img/player_standing.png',
@@ -9,6 +10,7 @@ const images = {
 export function generateMap(level) {
     const mapContainer = document.getElementById('map');
 
+    //Create cell for non null element
     level.forEach((row, rowIndex) => {
         row.forEach((cell, cellIndex) => {
             const cellElement = document.createElement('div');

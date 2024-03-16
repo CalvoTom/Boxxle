@@ -1,4 +1,16 @@
+body {
+    /* style background */
+    background: rgb(176, 149, 30);
+}
+
 #map {
+    /* Center the map */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* style the map */
     display: grid;
     grid-template-columns: repeat(10, 50px);
     grid-template-rows: repeat(10, 50px);
@@ -8,6 +20,7 @@
 }
 
 .cell {
+    /* style cell of the map */
     width: 50px;
     height: 50px;
     background-size: cover;
