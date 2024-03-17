@@ -1,3 +1,5 @@
+import {Levels} from "./level.js";
+
 const images = {
     //Image path for each Level array value
     '0': 'null',
@@ -7,8 +9,9 @@ const images = {
     '4': './img/floor_point.png',
 };
 
-export function generateMap(level) {
+export function generateMap(currentMap, currentLevel) {
     const mapContainer = document.getElementById('map');
+    const currentMapOriginState = Levels[currentLevel];
 
     //remove last map state
     while (mapContainer.firstChild) {
@@ -17,13 +20,17 @@ export function generateMap(level) {
 
 
     //Create cell for non null element
-    level.forEach((row, rowIndex) => {
+    currentMap.forEach((row, rowIndex) => {
         row.forEach((cell, cellIndex) => {
             const cellElement = document.createElement('div');
             cellElement.classList.add('cell');
             if (cell !== 0) {
                 const image = images[cell.toString()];
-                cellElement.style.backgroundImage = `url(${image})`;
+                if (currentMapOriginState[rowIndex][cellIndex] === 4 && cell === 2) {
+                    cellElement.style.backgroundImage = `url(./img/dark_box.png)`;
+                } else {
+                    cellElement.style.backgroundImage = `url(${image})`;
+                }
             }
 
             mapContainer.appendChild(cellElement);

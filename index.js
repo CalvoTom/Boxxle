@@ -12,12 +12,52 @@ const keys = {
     38: 'up',
     40: 'down'
 }
+
+const rulesButton = document.getElementById("rules-button");
+const rulesModal = document.getElementById("rules-modal");
+
+rulesButton.addEventListener("click", () => {
+    rulesModal.style.display = "block";
+});
+
+const closeButton = document.querySelector(".close");
+closeButton.addEventListener("click", () => {
+    rulesModal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {if (event.target === rulesModal) {
+    rulesModal.style.display = "none";
+}
+});
+
+function updateProgressBar(currentLevel, maxLevel) {
+    const levelText = `${currentLevel} / ${maxLevel}`;
+    const levelWidth = (currentLevel / maxLevel) * 100;
+    const levelElement = document.querySelector('.level');
+    const levelTextElement = document.querySelector('.level-text');
+
+    levelElement.style.width = `${levelWidth}%`;
+    levelTextElement.textContent = levelText;
+}
+
+function updateStepCounter(nbStep){
+    const stepCounter = document.getElementById("step-counter");
+    stepCounter.textContent = `Steps: ${nbStep}`;
+}
+
 const draw = (level = 0) => {
     //Charge map level
+    let nbStep = 0;
     let currentLevel = level;
+    const maxLevel = Levels.length;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
-    console.log(currentMap);
-    generateMap(currentMap);
+    generateMap(currentMap, currentLevel);
+    updateProgressBar(currentLevel, maxLevel);
+
+    const button = document.querySelector("button");
+    button.addEventListener("click", (event) => {
+        draw(currentLevel);
+    });
 
     //Check for arrow keys input
     document.addEventListener("keydown", event => {
@@ -25,23 +65,33 @@ const draw = (level = 0) => {
             switch (event.key){
                 case "ArrowUp" :
                     currentMap = moove("up", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    nbStep++
+                    updateStepCounter(nbStep);
+                    generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowDown" :
                     currentMap = moove("down", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    nbStep++
+                    updateStepCounter(nbStep);
+                    generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowLeft" :
                     currentMap = moove("left", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    nbStep++
+                    updateStepCounter(nbStep);
+                    generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowRight" :
                     currentMap = moove("right", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    nbStep++
+                    updateStepCounter(nbStep);
+                    generateMap(currentMap, currentLevel);
                     break;
             }
             if (checkBox(currentMap, currentLevel)){
                 currentLevel += 1;
+                nbStep = 0;
+                updateStepCounter(nbStep);
                 draw(currentLevel);
             }
         }
