@@ -3,16 +3,24 @@ import {Levels} from "./src/level.js";
 import {moove} from "./src/moove.js"
 import {checkBox} from "./src/checkBox.js";
 
+//Global variable
+let nbStep = 0;
+let currentLevel = 0;
+let currentMap = JSON.parse(JSON.stringify(Levels[0]));
+const maxLevel = Levels.length;
+
 
 //Rules button import
 const rulesButton = document.getElementById("rules-button");
 const rulesModal = document.getElementById("rules-modal");
 const closeButton = document.querySelector(".close");
 
-//Rules display
+//Event listener
+//rules
 rulesButton.addEventListener("click", () => {
     rulesModal.style.display = "block";
 });
+
 closeButton.addEventListener("click", () => {
     rulesModal.style.display = "none";
 });
@@ -20,12 +28,36 @@ window.addEventListener("click", (event) => {if (event.target === rulesModal) {
     rulesModal.style.display = "none";
 }
 });
+//Keystroke
+document.addEventListener("keydown", event => {
+    if(event.key.startsWith("Arrow")){
+        switch (event.key){
+            case "ArrowUp" :
+                currentMap = moove("up", currentMap, currentLevel);
+                nbStep++
+                break;
+            case "ArrowDown" :
+                currentMap = moove("down", currentMap, currentLevel);
+                nbStep++
+                break;
+            case "ArrowLeft" :
+                currentMap = moove("left", currentMap, currentLevel);
+                nbStep++
+                break;
+            case "ArrowRight" :
+                currentMap = moove("right", currentMap, currentLevel);
+                nbStep++
+                break;
+        }
+    }
+});
 
-//reset button
+
+//Reset button
 let globalLevel = 0;
 const resetButton = document.querySelector(".button");
 resetButton.addEventListener("click", (event) => {
-    game(globalLevel);
+    currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
 });
 
 //Update function for progress bar
@@ -45,57 +77,39 @@ function updateStepCounter(nbStep){
     stepCounter.textContent = `Steps: ${nbStep}`;
 }
 
-
-//Main function
-const game = (level = 0) => {
-    //All variable initialisation
-    let nbStep = 0;
-    let currentLevel = level;
-    globalLevel = currentLevel;
-    let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
-    const maxLevel = Levels.length;
-
-    //Display original game state
-    generateMap(currentMap, currentLevel);
-    updateProgressBar(currentLevel, maxLevel);
-
-    //Check for arrow keys input
-    document.addEventListener("keydown", event => {
-        if(event.key.startsWith("Arrow")){
-            switch (event.key){
-                case "ArrowUp" :
-                    currentMap = moove("up", currentMap, currentLevel);
-                    nbStep++
-                    updateStepCounter(nbStep);
-                    generateMap(currentMap, currentLevel);
-                    break;
-                case "ArrowDown" :
-                    currentMap = moove("down", currentMap, currentLevel);
-                    nbStep++
-                    updateStepCounter(nbStep);
-                    generateMap(currentMap, currentLevel);
-                    break;
-                case "ArrowLeft" :
-                    currentMap = moove("left", currentMap, currentLevel);
-                    nbStep++
-                    updateStepCounter(nbStep);
-                    generateMap(currentMap, currentLevel);
-                    break;
-                case "ArrowRight" :
-                    currentMap = moove("right", currentMap, currentLevel);
-                    nbStep++
-                    updateStepCounter(nbStep);
-                    generateMap(currentMap, currentLevel);
-                    break;
-            }
-            //Check victory
-            if (checkBox(currentMap, currentLevel)){
-                currentLevel += 1;
-                nbStep = 0;
-                updateStepCounter(nbStep);
-                game(currentLevel);
-            }
-        }
-    })
+//Update function for player
+let lastFrame = 0;
+function updatePlayer(){
+    lastFrame++;
+    if (lastFrame > 3){
+        lastFrame = 0;
+    }
+    const cellPLayer = document.querySelector("#player");
+    if (cellPLayer === null) {
+        console.log("ERROR: No player")
+        window.close();
+    }else {
+        cellPLayer.style.backgroundImage = `url(./img/player${lastFrame}.png)`;
+    }
 }
-game();
+
+//Game loop
+generateMap(currentMap, currentLevel);
+function gameLoop(){
+    //Update map and counter
+    updateProgressBar(currentLevel, maxLevel);
+    updateStepCounter(nbStep);
+    generateMap(currentMap, currentLevel);
+    //Update player animation
+    updatePlayer();
+    //Test victory
+    if (checkBox(currentMap, currentLevel)) {
+        currentLevel += 1;
+        nbStep = 0;
+        currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
+    }
+    setTimeout(() => {
+        window.requestAnimationFrame(gameLoop);
+    }, 100);
+}
+window.requestAnimationFrame(gameLoop);
