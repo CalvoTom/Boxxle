@@ -3,10 +3,10 @@ import {Levels} from "./level.js";
 const images = {
     //Image path for each Level array value
     '0': 'null',
-    '1': './img/wall.jpg',
-    '2': './img/box.jpg',
+    '1': './img/wall2.png',
+    '2': './img/box1.png',
     '3': './img/player0.png',
-    '4': './img/floor_point.png',
+    '4': './img/floor_point1.png',
 };
 
 export function generateMap(currentMap, currentLevel) {
@@ -26,8 +26,8 @@ export function generateMap(currentMap, currentLevel) {
             if (cell !== 0 && cell !== 3) {
                 const image = images[cell.toString()];
                 if (currentMapOriginState[rowIndex][cellIndex] === 4 && cell === 2) {
-                    cellElement.style.backgroundImage = `url(./img/dark_box.png)`;
-                }else {
+                    cellElement.style.backgroundImage = `url(./img/dark_box1.png)`;
+                } else {
                     cellElement.style.backgroundImage = `url(${image})`;
                 }
             } else if (cell === 3){
