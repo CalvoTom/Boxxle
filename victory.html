@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Victory Page</title>
+    <link rel="stylesheet" type="text/css" href="styleVictory.css">
+</head>
+<body>
+<div class="victory"></div>
+<div id="imposter" class="imposter">
+    <div class="spacesuit">
+        <div class="chest-and-head"></div>
+        <div class="legs"></div>
+        <div class="arm"></div>
+        <div class="helmet-glass"></div>
+    </div>
+</div>
+<div class="background"></div>
+<div class="name"></div>
+
+<audio id="myAudio" src="./soundEffect/sussy.mp3"></audio>
+<script>
+    const audio = document.getElementById("myAudio");
+    const playButton = document.getElementById("imposter");
+    playButton.addEventListener("click", function() {
+        audio.play();
+    });
+</script>
+
+</body>
+</html>

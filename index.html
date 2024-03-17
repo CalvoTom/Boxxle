@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>Boxxle.io</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Trattatello">
+</head>
+<body>
+<div class="progress-container">
+    <div class="progress-bar">
+        <div class="level" style="width: 50%;"></div>
+        <div class="level-text">Level 1 / Level 5</div>
+    </div>
+</div>
+<audio id="myAudio" src="./soundEffect/backgroundM.mp3"></audio>
+<button id="playButton" class="song-button"> 🔇 </button>
+<script>
+    const audio = document.getElementById("myAudio");
+    const playButton = document.getElementById("playButton");
+    playButton.addEventListener("click", function() {
+        if (audio.paused) {
+            audio.play();
+            playButton.textContent = " 🔊 ";
+        } else {
+            audio.pause();
+            playButton.textContent = " 🔇 ";
+        }
+    });
+</script>
+<button id="rules-button" class="button-17" role="button"> ? </button>
+<div id="rules-modal">
+    <div class="rules-content">
+        <span class="close">&times;</span>
+        <h2 class="title">Rules</h2>
+        <p class="paragraphe">Dans les méandres sylvestres où les ruisseaux chuchotent et les feuilles dansent au rythme des secrets des bois, il existe une créature légendaire connue sous le nom de Jordan Le Fripon,<br> un farfadet malicieux dont le rire résonne à traversles arbres comme une mélodie enchanteresse.
+            <br>
+            Ainsi, dans les recoins secrets de la nature, Jordan demeure, un farfadet rempli de fourberie. Aide-le à rassembler tous ses écus.</p>
+        <p class="paragraphe">Utiliser les flèches directionnelles pour bouger Jordan le fripon.</p>
+    </div>
+</div>
+<div id="map"></div>
+<div id="step-counter">Steps: 0</div>
+<div class="button-container">
+    <button class="button">Reset</button>
+</div>
+<script type="module" src="index.js"></script>
+</body>
+</html>
