@@ -18,29 +18,21 @@ export function generateMap(currentMap, currentLevel) {
         mapContainer.removeChild(mapContainer.firstChild);
     }
 
-
-    //remove last map state
-    while (mapContainer.firstChild) {
-        mapContainer.removeChild(mapContainer.firstChild);
-    }
-
     //Create cell for non null element
     currentMap.forEach((row, rowIndex) => {
         row.forEach((cell, cellIndex) => {
             const cellElement = document.createElement('div');
             cellElement.classList.add('cell');
-            if (cell !== 0) {
+            if (cell !== 0 && cell !== 3) {
                 const image = images[cell.toString()];
                 if (currentMapOriginState[rowIndex][cellIndex] === 4 && cell === 2) {
                     cellElement.style.backgroundImage = `url(./img/dark_box.png)`;
-                } else {
+                }else {
                     cellElement.style.backgroundImage = `url(${image})`;
                 }
-                if (cell === 3){
-                    cellElement.id = "player";
-                }
+            } else if (cell === 3){
+                cellElement.id = "player";
             }
-
             mapContainer.appendChild(cellElement);
         });
     });
