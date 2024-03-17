@@ -5,7 +5,7 @@ const images = {
     '0': 'null',
     '1': './img/wall.jpg',
     '2': './img/box.jpg',
-    '3': './img/player_standing.png',
+    '3': './img/player0.png',
     '4': './img/floor_point.png',
 };
 
@@ -19,6 +19,11 @@ export function generateMap(currentMap, currentLevel) {
     }
 
 
+    //remove last map state
+    while (mapContainer.firstChild) {
+        mapContainer.removeChild(mapContainer.firstChild);
+    }
+
     //Create cell for non null element
     currentMap.forEach((row, rowIndex) => {
         row.forEach((cell, cellIndex) => {
@@ -30,6 +35,9 @@ export function generateMap(currentMap, currentLevel) {
                     cellElement.style.backgroundImage = `url(./img/dark_box.png)`;
                 } else {
                     cellElement.style.backgroundImage = `url(${image})`;
+                }
+                if (cell === 3){
+                    cellElement.id = "player";
                 }
             }
 
