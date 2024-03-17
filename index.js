@@ -45,7 +45,7 @@ const draw = (level = 0) => {
     let currentLevel = level;
     const maxLevel = Levels.length;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
-    generateMap(currentMap);
+    generateMap(currentMap, currentLevel);
     updateProgressBar(currentLevel, maxLevel);
 
     const button = document.querySelector("button");
@@ -59,19 +59,19 @@ const draw = (level = 0) => {
             switch (event.key){
                 case "ArrowUp" :
                     currentMap = moove("up", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowDown" :
                     currentMap = moove("down", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowLeft" :
                     currentMap = moove("left", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowRight" :
                     currentMap = moove("right", currentMap, currentLevel);
-                    generateMap(currentMap);
+                    generateMap(currentMap, currentLevel);
                     break;
             }
             if (checkBox(currentMap, currentLevel)){
