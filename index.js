@@ -89,7 +89,7 @@ function updatePlayer(){
         console.log("ERROR: No player")
         window.close();
     }else {
-        cellPLayer.style.backgroundImage = `url(./img/player${lastFrame}.png)`;
+        cellPLayer.style.backgroundImage = `url(./img/farfadet${lastFrame}.png)`;
     }
 }
 
