@@ -129,12 +129,26 @@ body {
 }
 
 .rules-content {
+    background-image: url("./img/backgroundRules.png");
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
 }
+
+.title{
+    color: #582900;
+    text-align: center;
+    font-family: "Footlight MT Light";
+}
+
+.paragraphe{
+    color: #582900;
+    text-align: center;
+    font-family: "Footlight MT Light";
+}
+
 
 .close {
     color: #aaa;

@@ -5,7 +5,7 @@ const images = {
     '0': 'null',
     '1': './img/wall2.png',
     '2': './img/box1.png',
-    '3': './img/player0.png',
+    '3': './img/farfadet0.png',
     '4': './img/floor_point1.png',
 };
 
