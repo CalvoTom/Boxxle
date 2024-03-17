@@ -3,7 +3,7 @@ const images = {
     '0': 'null',
     '1': './img/Wall.jpg',
     '2': './img/box.jpg',
-    '3': './img/player_standing.png',
+    '3': './img/player0.png',
     '4': './img/floor_point.png',
 };
 
@@ -23,6 +23,9 @@ export function generateMap(level) {
             if (cell !== 0) {
                 const image = images[cell.toString()];
                 cellElement.style.backgroundImage = `url(${image})`;
+                if (cell === 3){
+                    cellElement.id = "player";
+                }
             }
 
             mapContainer.appendChild(cellElement);

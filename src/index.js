@@ -16,9 +16,15 @@ const draw = () => {
     generateMap(currentMap);
 
     window.requestAnimationFrame(gameLoop);
+    const cellPLayer = document.querySelector("#player");
+    let frame = 0;
+
     function gameLoop(){
-        generateMap(currentMap);
-        window.requestAnimationFrame(gameLoop);
+        frame = (frame + 1) % 3;
+        cellPLayer.style.backgroundImage = `url(./img/player${frame}.png`;
+        setTimeout(() => {
+            window.requestAnimationFrame(gameLoop);
+        }, 100);
     }
 }
 draw();
