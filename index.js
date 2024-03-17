@@ -40,8 +40,14 @@ function updateProgressBar(currentLevel, maxLevel) {
     levelTextElement.textContent = levelText;
 }
 
+function updateStepCounter(nbStep){
+    const stepCounter = document.getElementById("step-counter");
+    stepCounter.textContent = `Steps: ${nbStep}`;
+}
+
 const draw = (level = 0) => {
     //Charge map level
+    let nbStep = 0;
     let currentLevel = level;
     const maxLevel = Levels.length;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
@@ -59,23 +65,33 @@ const draw = (level = 0) => {
             switch (event.key){
                 case "ArrowUp" :
                     currentMap = moove("up", currentMap, currentLevel);
+                    nbStep++
+                    updateStepCounter(nbStep);
                     generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowDown" :
                     currentMap = moove("down", currentMap, currentLevel);
+                    nbStep++
+                    updateStepCounter(nbStep);
                     generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowLeft" :
                     currentMap = moove("left", currentMap, currentLevel);
+                    nbStep++
+                    updateStepCounter(nbStep);
                     generateMap(currentMap, currentLevel);
                     break;
                 case "ArrowRight" :
                     currentMap = moove("right", currentMap, currentLevel);
+                    nbStep++
+                    updateStepCounter(nbStep);
                     generateMap(currentMap, currentLevel);
                     break;
             }
             if (checkBox(currentMap, currentLevel)){
                 currentLevel += 1;
+                nbStep = 0;
+                updateStepCounter(nbStep);
                 draw(currentLevel);
             }
         }
