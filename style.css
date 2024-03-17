@@ -210,12 +210,21 @@ body {
 }
 
 #step-counter {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 16px;
+    position: absolute;
+    top: 18px;
+    right: 135px;
+    bottom: auto;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 3.5px;
+    font-weight: bold;
+    background-color: lightgray;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: grey;
+    border: 2px solid black;
+    border-radius: 7px;
+    box-shadow: 0 .2em darkgray;
+    font-size: 15pt;
 }
 
