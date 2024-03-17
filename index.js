@@ -80,17 +80,21 @@ function updateStepCounter(nbStep){
 //Update function for player
 let lastFrame = 0;
 function updatePlayer(){
-    const cellPLayer = document.querySelector("#player");
     lastFrame++;
     if (lastFrame > 3){
         lastFrame = 0;
     }
-    cellPLayer.style.backgroundImage = `url(./img/player${lastFrame}.png)`;
+    const cellPLayer = document.querySelector("#player");
+    if (cellPLayer === null) {
+        console.log("ERROR: No player")
+        window.close();
+    }else {
+        cellPLayer.style.backgroundImage = `url(./img/player${lastFrame}.png)`;
+    }
 }
 
 //Game loop
 generateMap(currentMap, currentLevel);
-const cellPLayer = document.querySelector("#player");
 function gameLoop(){
     //Update map and counter
     updateProgressBar(currentLevel, maxLevel);
