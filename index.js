@@ -3,33 +3,32 @@ import {Levels} from "./src/level.js";
 import {moove} from "./src/moove.js"
 import {checkBox} from "./src/checkBox.js";
 
-const GRID_WIDTH = 50;
-const GRID_HEIGHT = 25;
-const fps = 10
-const keys = {
-    37: 'left',
-    39: 'right',
-    38: 'up',
-    40: 'down'
-}
 
+//Rules button import
 const rulesButton = document.getElementById("rules-button");
 const rulesModal = document.getElementById("rules-modal");
+const closeButton = document.querySelector(".close");
 
+//Rules display
 rulesButton.addEventListener("click", () => {
     rulesModal.style.display = "block";
 });
-
-const closeButton = document.querySelector(".close");
 closeButton.addEventListener("click", () => {
     rulesModal.style.display = "none";
 });
-
 window.addEventListener("click", (event) => {if (event.target === rulesModal) {
     rulesModal.style.display = "none";
 }
 });
 
+//reset button
+let globalLevel = 0;
+const resetButton = document.querySelector(".button");
+resetButton.addEventListener("click", (event) => {
+    game(globalLevel);
+});
+
+//Update function for progress bar
 function updateProgressBar(currentLevel, maxLevel) {
     const levelText = `${currentLevel} / ${maxLevel}`;
     const levelWidth = (currentLevel / maxLevel) * 100;
@@ -40,24 +39,25 @@ function updateProgressBar(currentLevel, maxLevel) {
     levelTextElement.textContent = levelText;
 }
 
+//Update function for step counter
 function updateStepCounter(nbStep){
     const stepCounter = document.getElementById("step-counter");
     stepCounter.textContent = `Steps: ${nbStep}`;
 }
 
-const draw = (level = 0) => {
-    //Charge map level
+
+//Main function
+const game = (level = 0) => {
+    //All variable initialisation
     let nbStep = 0;
     let currentLevel = level;
-    const maxLevel = Levels.length;
+    globalLevel = currentLevel;
     let currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
+    const maxLevel = Levels.length;
+
+    //Display original game state
     generateMap(currentMap, currentLevel);
     updateProgressBar(currentLevel, maxLevel);
-
-    const button = document.querySelector("button");
-    button.addEventListener("click", (event) => {
-        draw(currentLevel);
-    });
 
     //Check for arrow keys input
     document.addEventListener("keydown", event => {
@@ -88,13 +88,14 @@ const draw = (level = 0) => {
                     generateMap(currentMap, currentLevel);
                     break;
             }
+            //Check victory
             if (checkBox(currentMap, currentLevel)){
                 currentLevel += 1;
                 nbStep = 0;
                 updateStepCounter(nbStep);
-                draw(currentLevel);
+                game(currentLevel);
             }
         }
     })
 }
-draw();
+game();
