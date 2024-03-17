@@ -105,8 +105,13 @@ function gameLoop(){
     //Test victory
     if (checkBox(currentMap, currentLevel)) {
         currentLevel += 1;
-        nbStep = 0;
-        currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
+        if (currentLevel === maxLevel){
+            // Redirect to victory page
+            window.location.replace("victory.html");
+        }else{
+            nbStep = 0;
+            currentMap = JSON.parse(JSON.stringify(Levels[currentLevel]));
+        }
     }
     setTimeout(() => {
         window.requestAnimationFrame(gameLoop);
