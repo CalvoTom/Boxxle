@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./style.css">
     <title>Boxxle.io</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="progress-container">
@@ -12,11 +13,26 @@
         <div class="level-text">Level 1 / Level 5</div>
     </div>
 </div>
+<audio id="myAudio" src="./soundEffect/backgroundM.mp3"></audio>
+<button id="playButton" class="song-button"> 🔇 </button>
+<script>
+    const audio = document.getElementById("myAudio");
+    const playButton = document.getElementById("playButton");
+    playButton.addEventListener("click", function() {
+        if (audio.paused) {
+            audio.play();
+            playButton.textContent = " 🔊 ";
+        } else {
+            audio.pause();
+            playButton.textContent = " 🔇 ";
+        }
+    });
+</script>
 <button id="rules-button" class="button-17" role="button"> ? </button>
 <div id="rules-modal">
     <div class="rules-content">
         <span class="close">&times;</span>
-        <h2 classe="title">Rules</h2>
+        <h2 class="title">Rules</h2>
         <p class="paragraphe">Boxxler is a puzzle game where you control a character tasked with moving boxes to goal points. The objective is to complete each level using the fewest moves possible. You can move your character in four directions to push the boxes, but watch out for walls that can block your path. Think strategically before making a move, as a wrong choice can lead you into a dead end. Complete all the levels to become a Boxxler master!</p>
     </div>
 </div>
