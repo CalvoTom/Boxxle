@@ -149,9 +149,18 @@ body {
     font-family: "Footlight MT Light";
 }
 
+.flchdirectionnel{
+    align-content: center;
+}
+
+.keys{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .close {
-    color: #aaa;
+    color: #582900;
     float: right;
     font-size: 28px;
     font-weight: bold;
